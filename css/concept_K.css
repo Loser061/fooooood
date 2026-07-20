@@ -9,34 +9,46 @@
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    text-shadow: 1px 1px 10px #4b2c14;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* 文字を見やすくするために影を少し濃く */
 }
 
 .title h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 32pt;
     font-weight: bold;
+    letter-spacing: 2px;
 }
 
 .title p {
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 15px;
+    font-weight: bold;
 }
 
+/* =========================================
+   店舗紹介エリア (feature)
+========================================= */
 .feature {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center; /* テキストと画像の縦位置を中央揃えに */
     width: 930px;
     max-width: 90%;
     margin-top: 75px;
     margin-left: auto;
     margin-right: auto;
-    align-items: flex-start;
+    padding-bottom: 40px;
+    border-bottom: 1px dashed #cccccc; /* 店舗と店舗の間に区切り線を追加 */
+}
+
+/* 最後のfeatureの下線は消す */
+.feature:last-of-type {
+    border-bottom: none;
 }
 
 .feature-text {
-    max-width: 500px;
+    width: 48%; /* 幅をパーセンテージで指定 */
     margin-right: 40px;
 }
 
@@ -50,34 +62,56 @@
 }
 
 .feature-text h2 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
-    line-height: 30px;
+    line-height: 1.4;
+    color: #333333;
 }
 
+/* 見出しの下線を飲食店らしいアクセントカラーに変更 */
 .feature-text h2::after {
     content: '';
     display: block;
-    width: 36px;
+    width: 40px;
     height: 3px;
-    background-color: #000000;
-    margin-top: 20px;
+    background-color: #d9534f; /* 食欲をそそる赤系の色 */
+    margin-top: 15px;
 }
 
 .feature-text p {
-    font-size: 15px;
-    line-height: 28px;
-    margin-top: 25px;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 20px;
+    color: #444444;
 }
 
+/* 画像の装飾（HTMLのインラインスタイルをCSSに統合） */
+.feature img {
+    width: 48%;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* 影をつけて写真を立体的に */
+    transition: transform 0.3s ease;
+}
+
+/* マウスホバーで少し写真が浮き上がる遊び心 */
+.feature img:hover {
+    transform: translateY(-5px);
+}
+
+/* =========================================
+   動画エリア
+========================================= */
 .movie {
     width: 930px;
     max-width: 90%;
     background-color: #f8f8f8;
     padding: 50px 60px;
     margin-top: 55px;
+    margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 12px; /* 少し丸みをつける */
 }
 
 .movie h2 {
@@ -102,14 +136,54 @@
     width: 100%;
     height: 450px;
     margin-top: 30px;
+    border-radius: 8px;
 }
 
 .movie p {
     font-size: 15px;
     line-height: 28px;
     margin-top: 20px;
+    text-align: center;
 }
 
 .footer {
-    margin-top: 100px;
+    margin-top: 80px;
+}
+
+/* =========================================
+   スマートフォン用レスポンシブ設定
+========================================= */
+@media (max-width: 800px) {
+    .feature, .feature.reverse {
+        flex-direction: column; /* スマホでは縦並びにする */
+        align-items: center;
+    }
+
+    .feature-text, .reverse .feature-text {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 30px;
+    }
+    
+    .feature-text h2 {
+        text-align: center;
+    }
+
+    .feature-text h2::after {
+        margin-left: auto;
+        margin-right: auto; /* 下線を中央揃えに */
+    }
+
+    .feature img {
+        width: 90%; /* スマホでは画像を大きく見せる */
+    }
+
+    .movie {
+        padding: 30px 20px;
+    }
+    
+    .movie iframe {
+        height: 250px; /* スマホ画面に合わせて動画の高さを調整 */
+    }
 }
