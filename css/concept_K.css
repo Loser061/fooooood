@@ -1,23 +1,33 @@
 @charset "utf-8";
 
 /* =========================================
-   ベース設定（美しい日本語フォントと基本の文字色を指定）
+   ベース設定（レインボー背景と基本フォント）
 ========================================= */
 body {
-    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Meiryo', sans-serif;
-    color: #333333; /* 真っ黒より少し柔らかく、でも読みやすい濃いグレー */
+    /* シュッとした尖った印象の明朝体をベースに設定 */
+    font-family: 'Noto Serif JP', serif; 
+    color: #111111;
+    
+    /* レインボー背景（斜めのグラデーション） */
+    background: linear-gradient(
+        135deg, 
+        #ffcccc 0%, 
+        #ffe6cc 15%, 
+        #ffffcc 30%, 
+        #ccffcc 50%, 
+        #cce5ff 65%, 
+        #ccccff 80%, 
+        #ffccff 100%
+    );
+    background-attachment: fixed; /* スクロールしても背景を固定 */
 }
 
 /* =========================================
    タイトル部分
 ========================================= */
 .title {
-    background-color: #333333;
-    background-image: url(../images/common/megahon.jpg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    padding: 80px 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* レインボーの上でも目立つように黒半透明 */
+    padding: 60px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,139 +37,89 @@ body {
 }
 
 .title h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 36pt;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.title p {
-    font-size: 16px;
-    margin-top: 15px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-family: 'Cherry Bomb One', cursive; /* 丸っこいポップなフォント */
+    font-size: 40pt;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 0px #ff007f; /* 少し派手な影を追加 */
 }
 
 /* =========================================
-   店舗紹介エリア
+   店舗紹介エリア（画像を中央に、縦並びにする）
 ========================================= */
 .feature {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1000px;
+    flex-direction: column; /* 縦並びに変更 */
+    align-items: center;    /* 中央揃え */
+    max-width: 800px;
     margin: 0 auto 80px auto;
     padding: 0 20px;
-    gap: 60px; /* テキストと画像のスキマを少し広げてスッキリと */
+    gap: 40px; 
 }
 
+/* 偶数番目も同じく中央縦並びにするため、row-reverseを解除 */
 .feature.reverse {
-    flex-direction: row-reverse;
+    flex-direction: column;
 }
 
 /* =========================================
-   テキスト部分のデザイン（読みやすさ重視）
+   テキスト部分のデザイン（読みやすさとメリハリ）
 ========================================= */
 .feature-text {
-    flex: 1;
+    width: 100%;
+    text-align: center; /* テキストも中央揃え */
+    background: rgba(255, 255, 255, 0.85); /* レインボー背景でも文字が読めるように白枠をつける */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .feature-text h2 {
-    font-size: 26px;
-    font-weight: bold;
-    color: #222222;
-    margin-bottom: 24px; /* 見出しと本文の余白を少し拡大 */
-    line-height: 1.5;
-    border-bottom: 3px solid #d9534f;
-    padding-bottom: 10px;
-    display: inline-block;
-    letter-spacing: 0.05em; /* 見出しの文字間隔を少し開けて上品に */
+    font-family: 'Cherry Bomb One', cursive; /* 見出しは極端に丸くポップに！ */
+    font-size: 32px;
+    color: #ff4500;
+    margin-bottom: 20px;
+    line-height: 1.4;
 }
 
 .feature-text p {
-    font-size: 16px;
-    line-height: 2.0; /* 行間をさらに広げてパッと見の圧迫感を軽減 */
-    letter-spacing: 0.03em; /* 文字間隔を広げて読みやすく */
-    color: #444444;
+    font-family: 'Noto Serif JP', serif; /* 本文は尖った明朝体でギャップを出す */
+    font-size: 18px;
+    font-weight: 700; /* 力強さを出すために太字 */
+    line-height: 2.0;
+    letter-spacing: 0.05em;
+    color: #333;
 }
 
 /* =========================================
-   画像部分のデザイン
+   画像部分のデザイン（ドーンと中央に）
 ========================================= */
 .feature img {
-    flex: 1;
     width: 100%;
-    max-width: 450px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* 影を少し柔らかく深くして高級感を演出 */
+    max-width: 600px; /* 画像を大きめに表示 */
+    border-radius: 20px; 
+    border: 5px solid #ffffff; /* 写真の周りに白い枠線をつけて目立たせる */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
     object-fit: cover;
-    transition: transform 0.3s ease; /* ホバー時のアニメーション準備 */
+    transition: transform 0.3s ease;
 }
 
-/* 画像にマウスを乗せた時に少しフワッと浮く演出（興味をそそるギミック） */
 .feature img:hover {
-    transform: translateY(-5px);
-}
-
-/* =========================================
-   動画エリア
-========================================= */
-.movie {
-    max-width: 900px;
-    background-color: #f8f8f8;
-    padding: 50px;
-    margin: 0 auto 80px auto;
-    border-radius: 12px;
-}
-
-.movie h2 {
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 0.05em;
-}
-
-.movie h2::after {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 3px;
-    background-color: #000000;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.movie iframe {
-    display: block;
-    width: 100%;
-    height: 450px;
-    margin-top: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.movie p {
-    font-size: 15px;
-    text-align: center;
-    margin-top: 20px;
-    line-height: 1.8;
+    transform: scale(1.05); /* マウスを乗せると少しだけズームするギミック */
 }
 
 /* =========================================
    スマホ用の設定
 ========================================= */
 @media (max-width: 800px) {
-    .feature, .feature.reverse {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .feature-text h2 {
-        font-size: 22px; /* スマホでは見出しを少し小さく */
+    .title h1 {
+        font-size: 28pt;
     }
 
-    .feature img {
-        max-width: 100%;
+    .feature-text h2 {
+        font-size: 24px; 
+    }
+
+    .feature-text p {
+        font-size: 16px;
     }
 }
