@@ -1,10 +1,18 @@
 @charset "utf-8";
 
 /* =========================================
-   タイトル部分（背景画像が出ない時のための黒背景を追加）
+   ベース設定（美しい日本語フォントと基本の文字色を指定）
+========================================= */
+body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Meiryo', sans-serif;
+    color: #333333; /* 真っ黒より少し柔らかく、でも読みやすい濃いグレー */
+}
+
+/* =========================================
+   タイトル部分
 ========================================= */
 .title {
-    background-color: #333333; /* 背景画像がない場合はこの色になります */
+    background-color: #333333;
     background-image: url(../images/common/megahon.jpg);
     background-repeat: no-repeat;
     background-position: center center;
@@ -29,47 +37,49 @@
     font-size: 16px;
     margin-top: 15px;
     font-weight: bold;
+    letter-spacing: 1px;
 }
 
 /* =========================================
-   店舗紹介エリア（確実な横並びと、綺麗な余白）
+   店舗紹介エリア
 ========================================= */
 .feature {
     display: flex;
-    align-items: center; /* 縦の中央で揃える */
+    align-items: center;
     justify-content: space-between;
-    max-width: 1000px; /* 横幅が広がりすぎないように制限 */
-    margin: 0 auto 80px auto; /* 画面の中央に配置し、下の余白を広めにとる */
+    max-width: 1000px;
+    margin: 0 auto 80px auto;
     padding: 0 20px;
-    gap: 50px; /* テキストと画像の間に確実なスキマを作る */
+    gap: 60px; /* テキストと画像のスキマを少し広げてスッキリと */
 }
 
-/* 偶数番目の店舗を左右反転させる */
 .feature.reverse {
     flex-direction: row-reverse;
 }
 
 /* =========================================
-   テキスト部分のデザイン
+   テキスト部分のデザイン（読みやすさ重視）
 ========================================= */
 .feature-text {
-    flex: 1; /* スペースを均等に分ける */
+    flex: 1;
 }
 
 .feature-text h2 {
     font-size: 26px;
     font-weight: bold;
     color: #222222;
-    margin-bottom: 20px;
-    line-height: 1.4;
-    border-bottom: 3px solid #d9534f; /* アクセントの赤い下線 */
+    margin-bottom: 24px; /* 見出しと本文の余白を少し拡大 */
+    line-height: 1.5;
+    border-bottom: 3px solid #d9534f;
     padding-bottom: 10px;
-    display: inline-block; /* 下線の長さを文字に合わせる */
+    display: inline-block;
+    letter-spacing: 0.05em; /* 見出しの文字間隔を少し開けて上品に */
 }
 
 .feature-text p {
     font-size: 16px;
-    line-height: 1.8; /* 行間を広げて読みやすく */
+    line-height: 2.0; /* 行間をさらに広げてパッと見の圧迫感を軽減 */
+    letter-spacing: 0.03em; /* 文字間隔を広げて読みやすく */
     color: #444444;
 }
 
@@ -77,12 +87,18 @@
    画像部分のデザイン
 ========================================= */
 .feature img {
-    flex: 1; /* スペースを均等に分ける */
+    flex: 1;
     width: 100%;
-    max-width: 450px; /* 画像が大きくなりすぎないように制限 */
-    border-radius: 12px; /* 角を丸くする */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 影をつけて画像を浮き立たせる */
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* 影を少し柔らかく深くして高級感を演出 */
     object-fit: cover;
+    transition: transform 0.3s ease; /* ホバー時のアニメーション準備 */
+}
+
+/* 画像にマウスを乗せた時に少しフワッと浮く演出（興味をそそるギミック） */
+.feature img:hover {
+    transform: translateY(-5px);
 }
 
 /* =========================================
@@ -100,6 +116,7 @@
     font-size: 22px;
     font-weight: bold;
     text-align: center;
+    letter-spacing: 0.05em;
 }
 
 .movie h2::after {
@@ -119,16 +136,18 @@
     height: 450px;
     margin-top: 30px;
     border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .movie p {
     font-size: 15px;
     text-align: center;
     margin-top: 20px;
+    line-height: 1.8;
 }
 
 /* =========================================
-   スマホ用の設定（画面が細い時は縦並びにする）
+   スマホ用の設定
 ========================================= */
 @media (max-width: 800px) {
     .feature, .feature.reverse {
@@ -136,6 +155,10 @@
         gap: 30px;
     }
     
+    .feature-text h2 {
+        font-size: 22px; /* スマホでは見出しを少し小さく */
+    }
+
     .feature img {
         max-width: 100%;
     }
