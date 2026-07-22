@@ -1,32 +1,7 @@
 @charset "utf-8";
 
-/* =========================================
-   ベース設定（レインボー背景と基本フォント）
-========================================= */
-body {
-    /* シュッとした尖った印象の明朝体をベースに設定 */
-    font-family: 'Noto Serif JP', serif; 
-    color: #111111;
-    
-    /* レインボー背景（斜めのグラデーション） */
-    background: linear-gradient(
-        135deg, 
-        #ffcccc 0%, 
-        #ffe6cc 15%, 
-        #ffffcc 30%, 
-        #ccffcc 50%, 
-        #cce5ff 65%, 
-        #ccccff 80%, 
-        #ffccff 100%
-    );
-    background-attachment: fixed; /* スクロールしても背景を固定 */
-}
-
-/* =========================================
-   タイトル部分
-========================================= */
 .title {
-    background-color: rgba(0, 0, 0, 0.7); /* レインボーの上でも目立つように黒半透明 */
+    background-color: rgba(0, 0, 0, 0.75); 
     padding: 60px 20px;
     display: flex;
     flex-direction: column;
@@ -37,89 +12,118 @@ body {
 }
 
 .title h1 {
-    font-family: 'Cherry Bomb One', cursive; /* 丸っこいポップなフォント */
+    font-family: 'Cherry Bomb One', cursive; 
     font-size: 40pt;
     letter-spacing: 3px;
-    text-shadow: 2px 2px 0px #ff007f; /* 少し派手な影を追加 */
+    color: #ffffff;
+    animation: neon-flash 2.5s infinite;
 }
 
-/* =========================================
-   店舗紹介エリア（画像を中央に、縦並びにする）
-========================================= */
 .feature {
     display: flex;
-    flex-direction: column; /* 縦並びに変更 */
-    align-items: center;    /* 中央揃え */
+    flex-direction: column; 
+    align-items: center;    
     max-width: 800px;
     margin: 0 auto 80px auto;
     padding: 0 20px;
     gap: 40px; 
 }
 
-/* 偶数番目も同じく中央縦並びにするため、row-reverseを解除 */
 .feature.reverse {
     flex-direction: column;
 }
 
-/* =========================================
-   テキスト部分のデザイン（読みやすさとメリハリ）
-========================================= */
 .feature-text {
     width: 100%;
-    text-align: center; /* テキストも中央揃え */
-    background: rgba(255, 255, 255, 0.85); /* レインボー背景でも文字が読めるように白枠をつける */
-    padding: 30px;
+    text-align: center; 
+    background: rgba(255, 255, 255, 0.4); 
+    padding: 40px 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .feature-text h2 {
-    font-family: 'Cherry Bomb One', cursive; /* 見出しは極端に丸くポップに！ */
-    font-size: 32px;
+    font-family: 'Cherry Bomb One', cursive; 
+    font-size: 50px;
     color: #ff4500;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     line-height: 1.4;
+    
+    -webkit-text-stroke: 3px #ffffff; 
+    text-shadow: 
+        3px 3px 0px #ffffff,
+        -3px -3px 0px #ffffff,
+        3px -3px 0px #ffffff,
+        -3px 3px 0px #ffffff,
+        5px 5px 8px rgba(0, 0, 0, 0.4);
+        
+    animation: neon-flash 1.5s infinite;
 }
 
 .feature-text p {
-    font-family: 'Noto Serif JP', serif; /* 本文は尖った明朝体でギャップを出す */
-    font-size: 18px;
-    font-weight: 700; /* 力強さを出すために太字 */
+    font-family: 'Noto Serif JP', serif; 
+    font-size: 26px;
+    font-weight: 700; 
     line-height: 2.0;
     letter-spacing: 0.05em;
-    color: #333;
+    color: #111111;
+    
+    -webkit-text-stroke: 1px #ffffff;
+    text-shadow: 
+        2px 2px 0px #ffffff,
+        -2px -2px 0px #ffffff,
+        2px -2px 0px #ffffff,
+        -2px 2px 0px #ffffff,
+        0px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* =========================================
-   画像部分のデザイン（ドーンと中央に）
-========================================= */
 .feature img {
     width: 100%;
-    max-width: 600px; /* 画像を大きめに表示 */
+    max-width: 600px; 
     border-radius: 20px; 
-    border: 5px solid #ffffff; /* 写真の周りに白い枠線をつけて目立たせる */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
+    border: 5px solid #ffffff; 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
 .feature img:hover {
-    transform: scale(1.05); /* マウスを乗せると少しだけズームするギミック */
+    transform: scale(1.05); 
 }
 
-/* =========================================
-   スマホ用の設定
-========================================= */
 @media (max-width: 800px) {
     .title h1 {
         font-size: 28pt;
     }
 
     .feature-text h2 {
-        font-size: 24px; 
+        font-size: 36px;
+        -webkit-text-stroke: 2px #ffffff;
     }
 
     .feature-text p {
-        font-size: 16px;
+        font-size: 20px;
+    }
+}
+
+@keyframes neon-flash {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 
+            3px 3px 0px #ffffff,
+            -3px -3px 0px #ffffff,
+            3px -3px 0px #ffffff,
+            -3px 3px 0px #ffffff,
+            0px 0px 10px #ffff00, 
+            0px 0px 20px #ff4500, 
+            0px 0px 40px #ff007f; 
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        text-shadow: 
+            3px 3px 0px #ffffff,
+            -3px -3px 0px #ffffff,
+            3px -3px 0px #ffffff,
+            -3px 3px 0px #ffffff; 
+        opacity: 0.8; 
     }
 }
